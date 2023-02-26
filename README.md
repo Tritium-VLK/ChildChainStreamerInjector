@@ -5,7 +5,34 @@ This contract is meant to be called by chainlink uplink.  It is used in cases wh
 
 The tests are based on LDO on Arbitrum where a multisig is curerntly doing these operations.
 
+to run tests
 
+```
+brownie test --network arbitrum-main-fork
+```
+
+If you do not have this network and the following lines to the end of your `~.brownie/netowrk_config-yaml`
+```yaml
+  - name: Ganache-CLI (Arbitrum-Mainnet Fork)
+    id: arbitrum-main-fork
+    cmd: ganache-cli
+    host: http://127.0.0.1
+    timeout: 120
+    cmd_settings:
+      port: 8545
+      gas_limit: 20000000
+      accounts: 10
+      evm_version: istanbul
+      mnemonic: brownie
+      fork: arbitrum-main
+
+```
+
+your .env file will require:
+```
+WEB3_INFURA_PROJECT_ID=
+or other arbitrum RPC
+```
 LDO tokens are sent into the contract and are meant to be stored there.
 
 A list is setup with gauges, amounts, and numbers of epochs.
