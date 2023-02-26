@@ -213,16 +213,6 @@ contract periodicRewardsInjector is ConfirmedOwner, Pausable, KeeperCompatibleIn
     }
 
     /**
-     * @notice Streamers only have 1 admin/distributor which has to be this contract, this allows  passthrough management
-    * @param _contract the contract to call
-    * @param _data the calldata to forward to said contract
-    */
-    function forwardCall(address _contract, bytes calldata _data) external onlyOwner {
-        (bool success, ) = _contract.call(_data);
-        require(success, "Call failed");
-        emit forwardedCall(_contract);
-    }
-    /**
      * @notice Sweep the full contract's balance for a given ERC-20 token
    * @param token The ERC-20 token which needs to be swept
    * @param recipient The address to pay
