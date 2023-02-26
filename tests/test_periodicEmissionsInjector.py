@@ -29,7 +29,7 @@ def test_can_call_check_upkeep(upkeep_caller, injector, streamer, admin):
     assert isinstance(performData, bytes)
 
 
-def test_can_perform_first_upkeep_(injector, upkeep_caller, streamer, token, admin, whale, gauge,weekly_incentive):
+def test_integration_perform_upkeep_flows(injector, upkeep_caller, streamer, token, admin, whale, gauge,weekly_incentive):
     ## Setup [2] for 2 rounds
     assert(weekly_incentive * 3 > token.balanceOf(admin)) # Tokens for 3 rounds so we are stopped by max rounds in the injector config
     injector.setRecipientList([streamer.address], [weekly_incentive], [2], {"from": admin})
